@@ -3,7 +3,7 @@
  * Date Created: Jan 31 2022
  * 
  * Last Edited by: Andrew Nguyen
- * Last Edit: Jan 31 2022
+ * Last Edit: Feb 1 2022
  * 
  * Description: Controls movement of apple tree AppleTree.
 *
@@ -24,10 +24,19 @@ public class AppleTree : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() { 
+        //Drop an apple every second with the Invoke function. DropApple is a custom function to create an apple.
+        Invoke("DropApple", 2f); 
+    
         
-    }
+    } //end Start()
+
+    void DropApple()
+    {
+        GameObject apple = Instantiate<GameObject>( applePrefab );
+        apple.transform.position = transform.position;
+        Invoke("DropApple", appleDropInterval);
+    }//end DropApple()
 
     // Update is called once per frame
     void Update()
